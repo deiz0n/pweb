@@ -31,7 +31,7 @@ class TutorResource(Resource):
                 db.session.commit()
                 return 'Resource Delete', 204
             except Exception:
-                return 'Resource In Use', 403
+                return 'Resource In Use', 409
         return 'Resource Not Found', 404
     
     def put(self, tutor_id=None):
@@ -76,7 +76,7 @@ class PetResource(Resource):
                 db.session.commit()
                 return 'Resource Delete', 204
             except Exception:
-                return 'Resource In Use', 403
+                return 'Resource In Use', 409
         return 'Resource Not Found', 404
     
     def put(self, pet_id=None):
