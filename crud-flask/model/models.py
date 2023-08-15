@@ -17,7 +17,12 @@ class Pet(db.Model):
 class TutorSchema(ma.Schema):
     class Meta:
         fields = ('id', 'nome', 'pets')
+        include_fk = True
         
 class PetsSchema(ma.Schema):
     class Meta:
         fields = ('id', 'nome', 'tutor_id')
+        include_fk = True
+        
+class TutorWithPetsSchema(TutorSchema):
+    pets = ma.Nested(PetsSchema, many=True)

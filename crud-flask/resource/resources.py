@@ -1,5 +1,6 @@
 from flask_restful import Resource, reqparse
-from model.models import db, Tutor, Pet, TutorSchema, PetsSchema
+from flask_sqlalchemy import SQLAlchemy
+from model.models import db, Tutor, Pet, TutorSchema, PetsSchema, TutorWithPetsSchema
 
 class TutorResource(Resource):
     def get(self, tutor_id=None):
@@ -9,8 +10,9 @@ class TutorResource(Resource):
         
         tutor = Tutor.query.get(tutor_id)
         if tutor is not None:
-            return TutorSchema().dump(tutor), 200
-        return 'Not found', 404
+            tutor_schema = TutorWithPetsSchema()
+            return tutor_schema.dump(tutor), 200
+        return 'Resource Not Found', 404
         
     def post(self):
         parser = reqparse.RequestParser()
@@ -24,10 +26,13 @@ class TutorResource(Resource):
     def delete(self, tutor_id=None):
         tutor = Tutor.query.get(tutor_id)
         if tutor is not None:
-            db.session.delete(tutor)
-            db.session.commit()
-            return '', 204
-        return 'Not found', 404
+            try:
+                db.session.delete(tutor)
+                db.session.commit()
+                return 'Resource Delete', 204
+            except Exception:
+                return 'Resource In Use', 403
+        return 'Resource Not Found', 404
     
     def put(self, tutor_id=None):
         parser = reqparse.RequestParser()
@@ -39,7 +44,7 @@ class TutorResource(Resource):
             tutor.nome = args['nome_tutor']
             db.session.commit()
             return TutorSchema().dump(tutor), 200
-        return 'Not found', 404
+        return 'Resource Not Found', 404
         
     
 class PetResource(Resource):
@@ -49,19 +54,41 @@ class PetResource(Resource):
             return PetsSchema(many=True).dump(pets), 200
         
         pet = Pet.query.get(pet_id)
-        return PetsSchema().dump(pet), 200
+        if pet is not None:
+            return PetsSchema().dump(pet), 200
+        return 'Resource Not Found', 404
     
     def post(self):
         parser = reqparse.RequestParser()
-        parser.add_argument('nome_tutor', type=str, required=True)
+        parser.add_argument('nome_pet', type=str, required=True)
+        parser.add_argument('tutor_id', type=int, required=True)
         args = parser.parse_args()
-        pet = Pet(nome=args['nome_pet'])
+        pet = Pet(nome=args['nome_pet'], tutor_id=args['tutor_id'])
         db.session.add(pet)
         db.session.commit()
         return PetsSchema().dump(pet), 200
     
-    def delete(self, pet_id):
+    def delete(self, pet_id=None):
         pet = Tutor.query.get(pet_id)
-        db.session.delete(pet)
-        db.session.commit()
-        return '', 204
+        if pet is not None:
+            try: 
+                db.session.delete(pet)
+                db.session.commit()
+                return 'Resource Delete', 204
+            except Exception:
+                return 'Resource In Use', 403
+        return 'Resource Not Found', 404
+    
+    def put(self, pet_id=None):
+        parser = reqparse.RequestParser()
+        parser.add_argument('nome_pet', type=str, required=True)
+        parser.add_argument('tutor_id', type=int, required=True)
+        args = parser.parse_args()
+        pet = Pet.query.get(pet_id)
+        
+        if pet is not None:
+            pet.nome = args['none_pet']
+            pet.tutor_id = args['tutor_id']
+            db.session.commit()
+            return PetsSchema().dump(pet), 200
+        return 'Resource Not Found', 404
