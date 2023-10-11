@@ -1,12 +1,17 @@
 let numero = parseInt(prompt("Digite um número: "))
 
-let x, contador = 0
+let x = 1
+let divisores = 0
 
-while (contador<numero) {
+while (x<=numero) {
     if (numero % x == 0) {
-        x++
-    }
-    contador++
+        divisores ++
+    } 
+    x++
 }
 
-window.alert(x)
+if (divisores == 2 && numero > 1) {
+    window.alert(`O número ${numero} é primo`)
+} else {
+    window.alert(`O número ${numero} não é primo`)
+}   
