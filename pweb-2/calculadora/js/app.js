@@ -16,11 +16,17 @@ clearbtn.addEventListener("click", () => {
 
 })
 
+
+function isOperator(value) {
+    return value === "/" || value === "*" || value === "+" || value === "-";
+}
+
 buttons.forEach((btn) => {
 
     btn.addEventListener("click", () => {
 
         if (!btn.id.match('erase')) {
+            if (realTimeScreenValue.length > 0 && isOperator(realTimeScreenValue[realTimeScreenValue.length - 1]) && isOperator(btn.value)) return
             realTimeScreenValue.push(btn.value)
             currentInput.innerHTML = realTimeScreenValue.join('');
             if (btn.classList.contains('num_btn')) {
