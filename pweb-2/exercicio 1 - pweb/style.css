@@ -1,0 +1,14 @@
+#marcas {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+img {
+    display: inline;
+    width: 250px;
+    height: 250px;
+    border-radius: 8px;
+}
