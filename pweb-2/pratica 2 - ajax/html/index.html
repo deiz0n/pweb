@@ -11,15 +11,14 @@
 
     <link href="profile.ico" rel="icon" type="image/x-icon" />
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <title> Profile Card </title>
 
 </head>
 
 <body>
     <div class="modal">
-        <img id="img-avatar" src="" alt="">
-        
+        <img alt="Perfil">
         <div class="close"></div>
     </div>
     
@@ -29,78 +28,61 @@
                 <div class="hamburger-menu">
                     <div class="center"></div>
                 </div>
-                <a href="mailto: s4shahzaib73@gmail.com" class="mail">
-                    <i class="far fa-envelope"></i>
-                </a>
+                
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="User">
+                    <button id="search-button" onclick="searchProfile">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+
                 <div class="main">
-                    <div class="image">
+                    <div id="img-avatar" class="image">
                         <div class="hover">
                             <i class="fas fa-camera fa-2x"></i>
                         </div>
                     </div>
-                    <h3 class="name"> Shahzaib Fardeen .G </h3>
-                    <h3 class="sub-name"> @Shazz </h3>
+                    <h3 class="name"> ? </h3>
+                    <h3 class="sub-name"> ? </h3>
                 </div>
             </div>
 
             <div class="content">
                 <div class="left">
                     <div class="about-container">
-                        <h3 class="title"> About Me ! </h3>
-                        <p class="text"> Multi Stack Developer | Assoc EDC Programmer | Software Engineer | Designer | Community Builder | </p>
+                        <h3 class="title"> Sobre: </h3>
+                        <p  class="text"> </p>
                     </div>
                     <div class="icons-container">
-                       
-                        <a href="https://www.linkedin.com/in/shahzaib-fardeen/" target="_blank" class="icon">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-
-                        <a href="https://github.com/Shahzaibfardeen" target="_blank" class="icon">
+                        <a id="user-github" href="" target="_blank" class="icon">
                             <i class="fab fa-github"></i>
                         </a>
                         
-                        <a href="https://twitter.com/shahzaibfardeen" target="_blank" class="icon">
+                        <a id="user-x" href="" target="_blank" class="icon">
                             <i class="fab fa-twitter"></i>
                         </a>
-                        
-                        <a href="https://www.instagram.com/shahzaib_fardeen/" target="_blank" class="icon">
-                            <i class="fab fa-instagram"></i>    
-                        </a>                      
-                        
-                        <a href="https://www.facebook.com/shahzaib.fardeen/" target="_blank" class="icon">
-                            <i class="fab fa-facebook"></i>
-                        </a>
-                        
-                        <a href="https://hashnode.com/@Shahzaibfardeen" target="_blank" class="icon">
-                            <i class="fa fa-rss-square" aria-hidden="true"></i>
-                        </a>
-                        
-                        <a href="https://www.polywork.com/shahzaibfardeen" target="_blank" class="icon">
-                            <i class="fa fa-braille"></i>
-                        </a>
-                        
                     </div>
                     <div class="buttons-wrap">
                         <div class="follow-wrap">
-                            <a href="https://www.instagram.com/shahzaib_fardeen/" target="_blank" class="follow"> Follow </a>
+                            <a href="https://www.instagram.com/doardo.ns/" target="_blank" class="follow"> Follow </a>
                         </div>
                         <div class="share-wrap">
-                            <a href="https://github.com/Shahzaibfardeen/My_Profile_Card" target="_blank" class="share"> Fork </a>
+                            <a href="https://github.com/deiz0n/pweb/tree/main/pweb-2/pratica%202%20-%20ajax" target="_blank" class="share"> Fork </a>
                         </div>
                     </div>
                 </div>
 
                 <div class="right">
                     <div>
-                        <h3 class="number"> 27 </h3>
+                        <h3 id="posts" class="number">?</h3>
                         <h3 class="number-title"> Posts </h3>
                     </div>
                     <div>
-                        <h3 class="number"> 520 </h3>
+                        <h3 id="following" class="number">?</h3>
                         <h3 class="number-title"> Following </h3>
                     </div>
                     <div>
-                        <h3 class="number"> 1.4K </h3>
+                        <h3 id="followers" class="number">?</h3>
                         <h3 class="number-title"> Followers </h3>
                     </div>
                 </div>
@@ -108,6 +90,6 @@
         </div>
     </div>
 
-    <script src="app.js"></script>
+    <script src="/js/app.js"></script>
 </body>
 </html>
